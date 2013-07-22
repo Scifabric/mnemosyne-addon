@@ -1,9 +1,9 @@
 {
-  "name": "firefox-extension",
-  "fullName": "firefox-extension",
+  "name": "pybossa",
+  "fullName": "pybossa",
   "id": "jid1-0A6Pg2TA5pWusA",
   "description": "a basic add-on",
-  "author": "",
+  "author": "Daniel Lombraña González",
   "license": "MPL 2.0",
   "version": "0.1"
 }
