@@ -32,6 +32,17 @@ self.on("message", function(project){
             $.post("http://links.com:5000", {url: img_url, project_slug: project.slug}); 
         });
         p.append(btn);
+        var btnDiscard = $("<button/>", {id: "btnDiscard_" + img_id});
+        btnDiscard.text("Discard it!");
+        btnDiscard.off('click').on('click', function(){
+            // Get image id removing btn_ string
+            var tmp = $(this).attr("id").split("btnDiscard_")[1];
+            console.log(tmp);
+            var img_url = $("#" + tmp).attr("src");
+            console.log(img_url);
+            $("#photo_" + tmp).hide();
+        });
+        p.append(btnDiscard);
         caption.append(p);
         div.append(caption);
         li.append(div);
