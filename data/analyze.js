@@ -51,7 +51,7 @@ self.port.on("getImages", function(keyWords) {
                 a.css("margin-left", "5px");
     
                 $(this).parent().append(a);
-                $.post("http://links.com", { url: $(this).attr("src")});
+                $.post("http://links.com", { url: $(this).attr("src"), project_slug: 'algo'});
             }
             //else {
             //    console.log("Image too small");
