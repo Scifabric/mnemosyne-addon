@@ -10,8 +10,8 @@ self.port.on("show", function(active_project){
             var option = $("<input/>");
             option.attr("type", "radio");
             option.attr("name", "project");
-            option.attr("value", data[i].slug);
-            if (data[i].slug == active_project) {
+            option.attr("value", data[i]);
+            if (data[i].slug == active_project.slug) {
                 option.attr("checked", "checked");
             }
             option.attr("id", i);
