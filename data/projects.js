@@ -1,4 +1,4 @@
-self.port.on("show", function(){
+self.port.on("show", function(active_project){
     var xhr = $.ajax({
         url: "http://links.com:5000/project/", 
         dataType: "json"
@@ -6,14 +6,14 @@ self.port.on("show", function(){
     xhr.done(function(data){
         $("#projects").html("");
         for(i=0;i<data.length;i++){
-            //var option = $("<option/>");
-            //option.attr("value", data[i].slug);
-            //option.text(data[i].name);
             var div = $("<div/>");
             var option = $("<input/>");
             option.attr("type", "radio");
             option.attr("name", "project");
             option.attr("value", data[i].slug);
+            if (data[i].slug == active_project) {
+                option.attr("checked", "checked");
+            }
             option.attr("id", i);
             div.append(option);
             var label = $("<label/>");
