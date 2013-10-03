@@ -6,7 +6,11 @@ self.port.on("show", function(active_project){
     xhr.done(function(data){
         $("#projects").html("");
         for(i=0;i<data.length;i++){
-            var div = $("<div/>");
+            var label = $("<label/>");
+            label.attr("for", data[i].slug);
+            label.attr("class", "radio");
+            label.html(data[i].name);
+
             var option = $("<input/>");
             option.attr("type", "radio");
             option.attr("name", "project");
@@ -15,12 +19,8 @@ self.port.on("show", function(active_project){
                 option.attr("checked", "checked");
             }
             option.attr("id", i);
-            div.append(option);
-            var label = $("<label/>");
-            label.attr("for", data[i].slug);
-            label.html(data[i].name);
-            div.append(label);
-            $("#projects").append(div);
+            label.append(option);
+            $("#projects").append(label);
         }
 
         $("input").on("click", function() {
