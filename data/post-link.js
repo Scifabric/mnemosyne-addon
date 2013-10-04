@@ -21,7 +21,7 @@ self.on("message", function(project){
         // Create a paragraph to host the buttons
         var p = $("<p/>");
         p.css("text-align", "center");
-        var btn = $("<button/>", {id: "btn_" + img_id, class: 'btn'});
+        var btn = $("<button/>", {id: "btn_" + img_id, class: 'btn btn-inverse'});
         btn.text("Send it!");
         // Button group
         var btn_group = $("<div/>");
@@ -39,7 +39,7 @@ self.on("message", function(project){
         });
         //p.append(btn);
         btn_group.append(btn);
-        var btnDiscard = $("<button/>", {id: "btnDiscard_" + img_id, class:'btn'});
+        var btnDiscard = $("<button/>", {id: "btnDiscard_" + img_id, class:'btn btn-inverse'});
         btnDiscard.text("Discard it!");
         btnDiscard.off('click').on('click', function(){
             // Get image id removing btn_ string
