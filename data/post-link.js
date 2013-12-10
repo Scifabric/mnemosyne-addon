@@ -1,4 +1,5 @@
-self.on("message", function(project){
+self.on("message", function(project, uri){
+    var n_images = project.images.length;
     for(i=0;i<project.images.length;i++) {
         // Create the image item
         var img_id = "img_" + String(i);
@@ -31,23 +32,28 @@ self.on("message", function(project){
         btn.off('click').on('click', function(){
             // Get image id removing btn_ string
             var tmp = $(this).attr("id").split("btn_")[1];
-            console.log(tmp);
             var img_url = $("#" + tmp).attr("src");
-            console.log(img_url);
             $("#photo_" + tmp).hide();
-            $.post("http://links.com:5000", {url: img_url, project_slug: project.slug}); 
+            $.post("http://localhost:5000", {url: img_url,
+                                             project_slug: project.slug,
+                                             uri: uri}); 
+            n_images = n_images - 1;
+            if (n_images <= 0) {
+                self.port.emit("no_more_images");
+            }
         });
-        //p.append(btn);
         btn_group.append(btn);
         var btnDiscard = $("<button/>", {id: "btnDiscard_" + img_id, class:'btn btn-inverse'});
         btnDiscard.text("Discard it!");
         btnDiscard.off('click').on('click', function(){
             // Get image id removing btn_ string
             var tmp = $(this).attr("id").split("btnDiscard_")[1];
-            console.log(tmp);
             var img_url = $("#" + tmp).attr("src");
-            console.log(img_url);
             $("#photo_" + tmp).hide();
+            n_images = n_images - 1;
+            if (n_images <= 0) {
+                self.port.emit("no_more_images");
+            }
         });
         //p.append(btnDiscard);
         btn_group.append(btnDiscard);
