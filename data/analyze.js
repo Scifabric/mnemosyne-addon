@@ -1,6 +1,12 @@
-self.port.on("getImages", function(keyWords) {
-    // DOM Text
-    var text = $('body').text();
+self.port.on("getImages", function(data) {
+    var keyWords = data.keywords;
+    if (data.uri.indexOf("google") == -1) {
+        // DOM Text
+        var text = $('body').text();
+    }
+    else {
+        var text = "";
+    }
 
     // Lower case all the text
     text = text.toLowerCase();
